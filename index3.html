@@ -1,0 +1,110 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+       <fieldset>
+           <legend>Agenda</legend>
+           <div>
+               <label >nome</label>
+               <input id= 'nome' type="text">
+
+           </div>
+           <div>
+                <label >telefone</label>
+                <input type="number"  id= 'telefone' type="text">
+
+           </div>
+           <button onclick="cadastrar()">Cadastrar</button>
+           <button onclick="limpar()">Limpar</button>
+        </fieldset>
+    </hr>
+
+        <table id="tabela" style="border: 1px solid blue;">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                </tr>
+            <thead>
+            <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+            </tbody>
+        </table>
+
+
+
+    <script>
+        var contatos = [];
+        function cadastrar() {
+            if (!validar()) {
+                
+            var contato = {
+                nome: document.getElementById('nome').value,
+                telefone: document.getElementById('telefone').value
+            }
+            contatos.push(contato);
+            carregarLinhas()
+            limpar();
+            }
+
+            
+        }
+        function carregarLinhas(){
+            var tbody = document.querySelector('#tabela tbody');
+            var tRow = '';
+            for (let i = 0; i < contatos.length; i++) {
+                tRow = `<tr>
+                <td>${contatos[i].nome}</td>
+                <td>${contatos[i].telefone}</td>
+                </tr>`
+
+                tbody.innerHTML += tRow;
+                
+            }
+        }
+        function validar() {
+
+            var nome = document.getElementById('nome');
+            var telefone = document.getElementById('telefone');
+            var error = false;
+
+            if (nome.value == '') {
+                nome.style = 'border: 1px solid red';
+                error = true;
+
+            }else
+            
+            nome.style = '';
+
+            if (telefone.value == '') {
+                telefone.style = 'border: 1px solid red';
+                error = true;
+            }
+            else
+            telefone.style = ''; 
+
+            return error;
+
+        }
+
+        function limpar() {
+            console.log('teste limpar');
+            var nome = document.getElementById('nome').value = ' ';
+            var telefone = document.getElementById('telefone').value = ' ';
+            nome.value = '';
+            telefone.value = '';
+            
+        }
+
+    </script>
+    
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+
+    <title>Document</title>
+</head>
+<body>
+    <input type="text"><button onclick="adicionar()">ADD</button>
+    <ul></ul>
+</body>
+
+<script>
+    var ItensArray = [];
+    var campo = document.getElementsByTagName('input')[0];
+    var quadro = document.getElementsByTagName('ul')[0];
+
+    function adicionar(){
+        quadro.innerHTML = ' ';
+        ItensArray.push(campo.value);
+        campo.value = ' ';
+
+        CarregarLista()
+    }
+    function deletar(posicao) {
+        ItensArray.splice(posicao, 1);
+
+        CarregarLista()
+        
+    }
+    function CarregarLista() {
+        var html= ' '
+        for (let i = 0; i < ItensArray.length; i++) {
+            html += '<li>' + ItensArray[i];
+                html += '<button onclick = "deletar('+ i +')">   X   </button>';
+                html += '</li></br>';
+            
+        }
+        quadro.innerHTML = html;
+        
+    }
+
+
+</script>
+</html>
+<!--    function adicionar() {
+        var campo = document.getElementsByTagName('input')[0];
+        var lista = document.getElementsByTagName('ul')[0];
+         lista.innerHTML += '<li>' + campo.value  +  '    ' + '<button onclick="apagar()" >X </button>' + '</li>' + '</br>';  
+         
+    } 
+    function apagar() {
+        var lista = document.getElementsByTagName('ul')[0];
+        var item = lista.getElementsByTagName('li')[1];
+
+        lista.parentNode.removeChild(lista);
+        
+    }-->

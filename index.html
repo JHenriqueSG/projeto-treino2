@@ -1,0 +1,175 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>treino de imagens</title>
+    <link rel="stylesheet" href="bootstrap-4.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css.style.css">
+
+</head>
+<body>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Sinqia</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Cliente<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Contato</a>
+                    </li>
+
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+                   
+                </div>
+              </nav>
+        
+    <div class="container">
+      
+            <h1>SINQIA</h1>
+            <fieldset>
+                <legend>Agenda</legend>
+                <div>
+                    <label >nome</label>
+                    <input id= 'nome' type="text">
+     
+                </div>
+                <div>
+                     <label >telefone</label>
+                     <input type="number"  id= 'telefone' type="text">
+     
+                </div>
+                <div>
+                    <label>e-mail</label>
+                    <input id="email" type="email">
+
+                    <button onclick="cadastrar()">Cadastrar</button>
+                    <button onclick="limpar()">Limpar</button>
+                  </div>
+
+             </fieldset>
+            </br>
+            <table id="table">
+                <thead>
+                    <th style="border:2px solid blue;">nome</th>
+                    <th style="border:2px solid blue;">telefone</th>
+                    <th style="border:2px solid blue;">e-mail</th>
+                    <th style="border:2px solid blue;">opções</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+           
+    </div>
+
+
+    <script>
+        var contatos = [];
+        function cadastrar() {
+            if (!validar()) {
+                
+            var contato = {
+                nome: document.getElementById('nome').value,
+                telefone: document.getElementById('telefone').value,
+                email: document.getElementById('email').value,
+
+            }
+            console.log(contato);
+
+            contatos.push(contato);
+            carregarLinhas()
+            limpar();
+            }
+
+            
+        }
+        function carregarLinhas(){
+            var tbody = document.querySelector('#table tbody');
+            var tRow = '';
+            for (let i = 0; i < contatos.length; i++) {
+                tRow = `<tr>
+                <td style="border:2px solid blue;">${contatos[i].nome}</td>
+                <td style="border:2px solid blue;">${contatos[i].telefone}</td>
+                <td style="border:2px solid blue;">${contatos[i].email}</td>
+                <td><button type="button" class="btn btn-success">save</button>
+                <button type="button" class="btn btn-danger">Delete</button></td>
+                </tr>`
+
+                
+              }
+              tbody.innerHTML += tRow;
+        }
+        function validar() {
+
+
+            var nome = document.getElementById('nome');
+            var telefone = document.getElementById('telefone');
+            var email = document.getElementById('email');
+            var error = false;
+            console.log(nome);
+
+            if (nome.value == '') {
+                nome.style = 'border: 1px solid red';
+                error = true;
+
+            }else
+            
+            nome.style = '';
+
+            if (telefone.value == '') {
+                telefone.style = 'border: 1px solid red';
+                error = true;
+            }
+            else
+            telefone.style = ''; 
+
+            if (email.value == '') {
+                email.style = 'border: 1px solid red';
+                error = true;
+            }
+            else
+            email.style = ''; 
+
+            return error;
+
+        }
+
+        function limpar() {
+            console.log('teste limpar');
+            var nome = document.getElementById('nome').value = ' ';
+            var telefone = document.getElementById('telefone').value = ' ';
+            var email = document.getElementById('email').value = ' ';
+            nome.value = '';
+            telefone.value = ' ';
+            email.value = '';
+            
+        }
+
+    </script>
+</body>
+<style>
+    .minhaborda{
+        border: 1px solid black;
+    }
+
+</style>
+</html>
